@@ -1,0 +1,230 @@
+---
+title: "First R Markdown sheet and R basics"
+author: "Luciano Gabbanelli"
+date: "October 2022"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapse: true
+    smooth_scroll: true
+    theme: journal
+    highlight: kate
+    df_print: paged
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Data Types and Structures
+
+### 1. Scalars
+Let us define *three* scalars
+```{r}
+a <- 25
+b <- 5
+c <- 2
+```
+
+#### Arithmetic operators
+Let us apply _relational operators_ to the variables defined
+```{r}
+a+b; class(a+b); a-b; mode(a-b)
+a*b; typeof(a*b); a/b; length(a/b)
+b^c; a%%b; a %/% c; attributes(a+b)
+```
+
+#### Relational operators
+```{r}
+a < b; typeof(a < b); a > c; mode(a > c)
+a == c; a != c; class(a!=c)
+
+#?Reserved
+```
+
+
+### 2. Vectors
+
+Let us define some **vectors** 
+```{r}
+x <- 1:5;x
+y <- seq(1,5,2);y
+z <- rep(1,5);z
+```
+and operate them
+```{r}
+x+z
+x+y
+x*y
+x*z
+z/x
+
+# Check this!! Look how R works.
+rep(2,6) -> w; w
+y*w
+
+x<y
+w;y; w>y
+w==y
+
+
+class(x)
+class(x+z)
+typeof(y)
+
+2*w
+3+w
+
+```
+
+
+### 3. Coercion
+
+```{r}
+y <- c(1.7, "a"); y
+class(y)
+
+y <- c(TRUE, F, 20); y
+class(y)
+
+y <- c(TRUE, F, 20, 'Hi'); y
+class(y)
+
+x <- c("a","b", "c")
+x <- as.numeric(x)
+x
+
+as.logical(c("a","b", "c"))
+```
+
+
+### 4. Outputs
+
+```{r}
+
+substr("abcdef", 2, 4)
+grep("A", c("b","A","c"), fixed=TRUE)
+sub("\\s", ".", "Hello There")
+strsplit("abc", "")
+paste("Today is", date(), sep=': ')
+4 - 4 * 2
+(4 - 4) * 2
+sqrt((4 - 4) * 2)
+sqrt(4 - 4 * 2)
+x <- 5/0
+exp(-x)
+exp(x)-exp(x)
+sqrt(-2)
+sqrt(-0i)
+```
+
+### 5. Create an odd vector
+
+```{r}
+odd_vector = seq(-9,9, by=2);odd_vector
+odd_vector[5]
+odd_vector[-5]
+odd_vector[c(1,5,7)]
+odd_vector[c(-1,-5,-7)]
+odd_vector[seq(2,8,2)]
+odd_vector[seq(-8,-2,2)]
+new_vector = odd_vector[odd_vector>0];new_vector
+sum(new_vector)
+mean(new_vector)
+prod(new_vector)
+c(odd_vector,new_vector)
+```
+
+
+### 6. Find common elements from multiple vectors
+
+```{r}
+first_vector <-  c(10, 5, -7, -3, 2, 2, -5, 1, 5, 49)
+second_vector <-  c(10, 4, -3, 2, 2, 5, 9, 6, -7, 33)
+
+is.element(5, first_vector)
+
+intersect(first_vector,second_vector)
+
+intersect(intersect(first_vector,second_vector),odd_vector)
+
+```
+
+
+### 7. Mind evaluation
+
+```{r}
+seq(6,10, by=0.6)
+seq(6,10, length=6)
+rep(1,6)
+x <- rep(c(6,10),6)
+x;length(x)
+length(rep(6:10,2))
+```
+
+
+### 8. Databases colums
+
+```{r}
+x = c(-10, NULL, log10(100), 30, NA)
+sum(x, na.rm=TRUE)
+mean(x, na.rm = T)
+print(prod(x, na.rm=TRUE))
+range(x, na.rm=TRUE)
+
+```
+
+
+### 9. Predict outputs
+
+```{r}
+
+## Some more examples. Manipulate letters and numbers.
+## You can name indexes of the vectors, and then call them by their names:
+a_list <- list(Numbers=1:15,Letters=letters[1:15]); print(a_list)
+
+## Initialize a list and then fill it:
+b_list <- list()
+b_list[[1]] <- "Let's code"
+b_list[[4]] <- FALSE
+b_list[[5]] <- pi
+
+## Outpus:
+print(a_list)
+typeof(a_list[[1]])
+mode(a_list$Numbers)
+is.vector(a_list$letters)
+
+typeof(b_list[[4]])
+class(b_list[[5]])
+b_list[c(1,2,5)]
+typeof(b_list[[2]])
+
+## atributes shows the main characteristics of an object
+attributes(a_list)
+attributes(b_list)
+
+```
+
+
+### 10. Census
+
+```{r}
+family_head <- list(name = "Casandra", surname = "Mendizabal", partner_name = "Arden", married = T, num_children = 4, children_ages = c(3,7,11,17), children_names = c('Denis', 'Farah', 'Jessie', 'Uri'), city = 'Barcelona')
+
+family_head
+print(family_head$married)
+print(family_head$city)
+family_head$children_names[c(2,4)]
+
+children <- list(names=family_head$children_names, ages=family_head$children_ages)
+children
+
+attributes(children)
+```
+
+
