@@ -1,0 +1,150 @@
+---
+title: "First R Markdown sheet and R basics"
+author: "Luciano Gabbanelli"
+date: "October 2022"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapse: true
+    smooth_scroll: true
+    theme: journal
+    highlight: kate
+    df_print: paged
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## Data Types and Structures
+
+### 1. Scalars
+Let us define *three* scalars
+```{r}
+a <- 25
+b <- 5
+c <- 2
+```
+
+Let us apply _arithmetic operators_ to the variables defined
+```{r}
+a+b; class(a+b); a-b; mode(a-b)
+a*b; typeof(a*b); a/b; length(a/b)
+b^c; a%%b; a %/% c; attributes(a+b)
+```
+
+
+### 2. Car
+
+```{r}
+E <- 150
+t <- 2
+
+V <- E / t
+```
+```{r}
+print(V)
+```
+
+
+
+### 3. Relational operators
+```{r}
+a < b; typeof(a < b); a > c; mode(a > c)
+a == c; a != c; class(a!=c)
+
+#?Reserved
+```
+
+
+
+### 4. BMI
+
+```{r}
+weight <- 89.45
+
+height <- 1.86
+
+BMI <- weight / (height ^ 2)
+
+cat("El BMI es: ", BMI)
+
+BMI > 24
+
+24*1.05 < BMI
+```
+
+
+
+### 5. String handling
+
+```{r}
+
+my.str <- paste(paste("What", "is", "it", "to", "be", "a", "data", "scientist"),"?",sep="")
+my.str
+nchar(my.str)
+
+library(stringr)
+str_length(my.str)
+
+library(stringi)
+stri_length(my.str)
+
+my.str
+ch <- str_count(my.str, pattern = "i")
+cat("My string repeats", ch, "times the letter \"i\"")
+
+```
+
+
+
+### 6. Outputs
+
+```{r}
+
+substr("abcdef", 2, 4)
+sub("\\s", ".", "Hello There")
+strsplit("abc", "")
+paste("Today is", date(), sep=': ')
+sprintf("%s scored %.2f percent", "Matthew", 72.3)
+4 - 4 * 2
+(4 - 4) * 2
+sqrt((4 - 4) * 2)
+sqrt(4 - 4 * 2)
+x <- 5/0
+exp(-x)
+exp(x)-exp(x)
+sqrt(-2)
+sqrt(-0i)
+```
+
+
+
+### 7. Remove spaces
+
+```{r}
+my.str <- "   Hi  "
+
+my.str <- str_trim(my.str)
+my.str
+
+my.str <- str_pad(my.str, 5)
+my.str
+str_pad(my.str,7, pad = "*", side = "right")
+
+
+```
+
+
+
+### 8. str_pad
+
+```{r}
+str_pad(c("f", "def", "bcdef", "abcdef"), 6)
+
+```
+

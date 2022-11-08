@@ -1,0 +1,189 @@
+---
+title: "First R Markdown Sheet and R Basics"
+author: "Luciano Gabbanelli"
+date: "2022-10-10"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    collapse: true
+    smooth_scroll: true
+    theme: journal
+    highlight: kate
+    df_print: paged
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Creating a R Markdown document: database
+
+You see how it behaves:
+
+```{r}
+a <- 25 # Create integers
+b <- 5.5 # create dobles
+c <- 2
+
+c <- a+b+c
+c
+
+d = a+b
+print(d)
+```
+
+
+Italic text: *my_function* , _my_function_
+
+Bold text: **importante** , __importante__
+
+CNTRL + ALT + I, new cell *chunk* of R code.
+
+```{r}
+v <- c(1,2,3)
+
+print(v)
+
+my.string <- "Remember that string can be defined with quotation marks or with single quotation marks"
+
+my.string
+
+# What happens if I write:
+a; b; c <- 5; 2; 'hola'; c
+
+# You decide how you prefere your documents.
+
+```
+
+# Objects in memory
+
+You can do code format in your document. Try the command **`ls`** to see all the objects that we have stored in memory:
+
+```{r}
+ls()
+```
+
+
+On some occasions, we will find that we have stored too large objects in memory, that once an operation has been carried out, we want to eliminate. 
+
+For this, we have the **`rm`** function, to which, we will pass the name as a parameter of the variable to remove.
+
+```{r}
+rm(c)
+print(ls())
+```
+
+
+## Comments
+
+In R we have two type of comments:
+
+* one line, we will simply use the operator **`#`** and add the comment.
+
+* Multi-line, for this we will open the comment with double quotes **`"`** and, until we include double quotes again, the comment will not be closed.
+
+
+```{r}
+"
+Comentario
+de
+varias
+líneas
+"
+```
+
+
+To make our work easier, in **R**, several lines can be commented at the same time, for this we will do:
+
+* Selection of lines
+
+* On the selected lines: CNTRL + SHIFT + C
+
+```{r}
+
+"I want to comment this text"
+
+z<-4
+
+"and this variable that I will not use anymore."
+
+```
+
+
+
+# Let us discuss the following:
+
+Given these assignations,
+
+```{r}
+x <- 5
+y <- 6.22
+z <- 13 
+w <- 4
+```
+
+how can we determine if they are odd or not using arithmetic operators?
+
+```{r}
+x%%2
+
+y/2
+
+y%%2
+
+13%/%2
+
+4%%2
+```
+
+
+## Packages:
+
+```{r}
+text1 <- cat("Hi", "guys")
+typeof(text1)
+text1
+
+# Here, there is no print workins as in Python
+text2 <- paste("Hi", "guys")
+text2
+text2[1]
+typeof(text2)
+is.atomic(text2)
+is.vector(text2)
+
+# library(stringr)
+text3 <- str_c("Hi", "guys")
+typeof(text3)
+is.atomic(text3)
+is.vector(text3)
+is.list(text3)
+
+str_dup("hola",6)
+
+```
+
+
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
